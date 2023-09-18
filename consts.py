@@ -17,3 +17,4 @@ LOSE_STATE = 1
 WIN_STATE = 3
 RUNNING_STATE = 2
 MINE_IMG = "mine.png"
+GRASS_IMG = "grass.png"

@@ -31,6 +31,9 @@ def handle_user_events():
         elif event.type == pygame.K_RIGHT:
             move_player_right()
 
+        elif event.type == pygame.K_SPACE:
+            screen
+
 
 def move_player_up():
     for row in range(state["soldier_state"]):
