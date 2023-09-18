@@ -1,0 +1,2 @@
+START_LOC_SOLDIER = 1 #temp
+START_LOC_FLAG = 2 #temp
