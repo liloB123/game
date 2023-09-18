@@ -1,6 +1,6 @@
 import pygame
 import consts
-import game_board
+import game_field
 
 state = {
     "is_window_open" : True,
@@ -78,21 +78,19 @@ def move_player_right():
 
     return state["soldier_state"]
 
-def check_if_touching_flag():
-    for row in range(state["soldier_state"]):
-        if 21 <= row <= 22:
-            for col in range(state["soldier_state"][row]):
-                if 46 <= col <= 49:
-                    state["state"] = consts.WIN_STATE
 
+def is_win():
+    if game_field.check_if_touching_flag(state):
+        return True
+    else:
+        return False
 
-def check_if_touching_bomb():
-    for i in range(len(state["soldier_state"])):
-        if i == 3:
-            for row in range(state["soldier_state"]):
-                for col in range(state["soldier_state"][row]):
-                    if game_board.create_board()[row][col] == consts.BOMB_IMG:
-                        state["state"] = consts.LOSE_STATE
+def is_lose():
+    if game_field.check_if_touching_bomb(state):
+        return True
+    else:
+        return False
+
 
 
 
