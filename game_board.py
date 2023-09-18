@@ -9,4 +9,4 @@ def create_board():
             game_rows.append(col)
         game_board.extend([game_rows])
 
-    return create_board()
+    return game_board
