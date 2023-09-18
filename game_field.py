@@ -4,9 +4,9 @@ import random
 def create_board():
     game_board = []
 
-    for row in range(len(consts.NUM_OF_ROWS)):
+    for row in range(len(consts.BOARD_ROWS)):
         game_rows = []
-        for col in range(len(consts.NUM_OF_COLS)):
+        for col in range(len(consts.BOARD_COLUMNS)):
             game_rows.append(col)
         game_board.extend([game_rows])
 
