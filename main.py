@@ -6,7 +6,9 @@ state = {
     "is_player_moving" : False,
     "moving_direction" : None,
     "soldier_state" : consts.START_LOC_SOLDIER,
-    "flag_state" : consts.START_LOC_FLAG
+    "flag_state" : consts.START_LOC_FLAG,
+    "soldier_pic_loc_x" : consts.SOLDIER_PIC_LOC_X,
+    "soldier_pic_loc_y" : consts.SOLDIER_PIC_LOC_Y,
 }
 
 def handle_user_events():
@@ -16,20 +18,60 @@ def handle_user_events():
 
 
         elif event.type == pygame.K_UP:
-            move_player_up() #needs to be def
+            move_player_up()
 
         elif event.type == pygame.K_DOWN:
-            move_player_down() #needs to be def
+            move_player_down()
 
         elif event.type == pygame.K_LEFT:
-            move_player_left() #needs to be def
+            move_player_left()
 
         elif event.type == pygame.K_RIGHT:
-            move_player_right() #needs to be def
+            move_player_right()
 
 
 def move_player_up():
-    for pixel in range(len(state["soldier_state"])):
-        state["soldier_state"][pixel] = state["soldier_state"][pixel + 1]
+    for row in range(state["soldier_state"]):
+        if row > 0:
+            for col in range(state["soldier_state"][row]):
+                state["soldier_state"][row][col] = state["soldier_state"][row - 1][col]
+    state["soldier_pic_loc_y"] -= consts.SQUARE_SIZE
 
-    state["soldier_state"]
+    return state["soldier_state"]
+
+def move_player_down():
+    can_move = []
+    for row in range(state["soldier_state"]):
+        if row > 24:
+            can_move.append(1)
+    if can_move == []:
+        for row in range(len(state["soldier_state"])):
+            for col in range(len(state["soldier_state"][row])):
+                state["soldier_state"][row][col] = state["soldier_state"][row + 1][col]
+    state["soldier_pic_loc_y"] += consts.SQUARE_SIZE
+
+    return state["soldier_state"]
+
+def move_player_left():
+    for row in range(state["soldier_state"]):
+        for col in range(len(state["soldier_state"][row])):
+            if col > 0:
+                state["soldier_state"][row][col] = state["soldier_state"][row + 1][col]
+    state["soldier_pic_loc_x"] -= consts.SQUARE_SIZE
+
+    return state["soldier_state"]
+
+
+def move_player_right():
+    can_move = []
+    for row in range(state["soldier_state"]):
+        for col in range(len(state["soldier_state"][row])):
+            if col > 49:
+                can_move.append(1)
+    if can_move == []:
+        for row in range(state["soldier_state"]):
+            for col in range(len(state["soldier_state"][row])):
+                state["soldier_state"][row][col] = state["soldier_state"][row + 1][col]
+    state["soldier_pic_loc_x"] -= consts.SQUARE_SIZE
+
+    return state["soldier_state"]
