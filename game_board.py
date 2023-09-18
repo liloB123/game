@@ -7,5 +7,6 @@ def create_board():
         game_rows = []
         for col in range(len(consts.NUM_OF_COLS)):
             game_rows.append(col)
-        game_board.append(game_rows)
+        game_board.extend([game_rows])
 
+    return create_board()

@@ -9,6 +9,7 @@ state = {
     "flag_state" : consts.START_LOC_FLAG,
     "soldier_pic_loc_x" : consts.SOLDIER_PIC_LOC_X,
     "soldier_pic_loc_y" : consts.SOLDIER_PIC_LOC_Y,
+    "state" : consts.RUNNING_STATE
 }
 
 def handle_user_events():
@@ -75,3 +76,15 @@ def move_player_right():
     state["soldier_pic_loc_x"] -= consts.SQUARE_SIZE
 
     return state["soldier_state"]
+
+def check_if_touching_flag():
+    for row in range(state["soldier_state"]):
+        if 21 <= row <= 22:
+            for col in range(state["soldier_state"][row]):
+                if 46 <= col <= 49:
+                    state["state"] = consts.WIN_STATE
+
+
+
+
+
