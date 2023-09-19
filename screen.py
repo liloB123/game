@@ -12,7 +12,6 @@ def green_board():
     pygame.display.set_caption("Game Of Life")
     green_board.fill(consts.GREEN_COLOR)
 
-    random_bushes_place(green_board)
 
 
 def random_bushes_place(green_board):
@@ -32,7 +31,6 @@ def black_board():
             rect = pygame.Rect(x, y, consts.SQUARE_SIZE, consts.SQUARE_SIZE)
             pygame.draw.rect(black_board, consts.GRID_GREEN_COLOR, rect, 1)
 
-    random_mines_place(mines_index_list, black_board)
 
 def random_mines_place(mines_index_list, black_board):
     count = 0
