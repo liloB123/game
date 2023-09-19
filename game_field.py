@@ -1,5 +1,7 @@
+import black_screen
 import consts
 import random
+import math
 
 def create_board():
     game_board = []
@@ -12,9 +14,20 @@ def create_board():
 
     return game_board
 
-def mines_on_board():
-    mines_index = []
-    count = 0
+def mines_on_board(state):
+    mines_list = black_screen.mines_places
+    x = state["soldier_state"]
+    for index in mines_list:
+        index_x_mine = math.ceil(index[0] / consts.SQUARE_SIZE)
+        index_y_mine = math.ceil(index[1] / consts.SQUARE_SIZE)
+        for i in range(len(state["soldier_state"])):
+            if i > 5:
+                for j in state["soldier_state"][state]:
+                    if state["soldier_state"][i][j][0] == index_x_mine and state["soldier_state"][i][j][0] == index_y_mine:
+                        state["state"] = consts.LOSE_STATE
+
+
+
 
     while count < 20:
         bush_row_index = random.randint(0, 24)
@@ -34,7 +47,7 @@ def check_if_touching_flag(game_state):
                     return True
 
 
-def check_if_touching_bomb(game_state):
+def check_if_touching_mine(game_state):
     for i in range(len(game_state["soldier_state"])):
         if i == 3:
             for row in range(game_state["soldier_state"]):

@@ -25,6 +25,7 @@ def main():
 
     while state["is_window_open"]:
         handle_user_events()
+        game_field.mines_on_board(state)
         screen.print_green_screen(state)
 
 def handle_user_events():
@@ -48,6 +49,7 @@ def handle_user_events():
             elif event.key == pygame.K_SPACE:
                 black_screen.print_black_screen(state)
                 pygame.time.delay(1000)
+
 
 
 def move_player_up():
@@ -114,6 +116,7 @@ def is_lose():
         return False
 
 
+game_field.mines_on_board(state)
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
