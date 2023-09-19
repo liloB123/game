@@ -21,8 +21,8 @@ def random_mines_place():
     mines_index_list = []
     count = 0
     while count < 20:
-        mine_x = random.randint(0, (consts.BOARD_COLUMNS * consts.SQUARE_SIZE - consts.SQUARE_SIZE * 3))
-        mine_y = random.randint(0, (consts.BOARD_ROWS * consts.SQUARE_SIZE - consts.SQUARE_SIZE))
+        mine_x = random.randint(0, (consts.BOARD_ROWS * consts.SQUARE_SIZE - consts.SQUARE_SIZE))
+        mine_y = random.randint(0, (consts.BOARD_COLUMNS * consts.SQUARE_SIZE - consts.SQUARE_SIZE))
         mine_index = [mine_x, mine_y]
         mines_index_list.append(mine_index)
         count += 1

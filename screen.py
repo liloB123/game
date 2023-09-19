@@ -20,8 +20,10 @@ def print_green_screen(state):
         draw_start_message()
     if state["state"] == consts.WIN_STATE:
         draw_win()
+
     if state["state"] == consts.LOSE_STATE:
         draw_lose()
+
 
     pygame.display.flip()
 
@@ -68,9 +70,11 @@ def draw_lose():
     draw_text(consts.LOSE_MESSAGE, consts.END_FONT_SIZE,
               consts.END_COLOR, consts.END_MESSAGE_LOCATION)
 
+
 def draw_win():
     draw_text(consts.WIN_MESSAGE, consts.END_FONT_SIZE,
               consts.END_COLOR, consts.END_MESSAGE_LOCATION)
+
 
 
 

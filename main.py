@@ -24,8 +24,20 @@ def main():
     black_screen.random_mines_place()
 
     while state["is_window_open"]:
+
+        if state["state"] != consts.RUNNING_STATE:
+            pygame.time.delay(3000)
+            pygame.quit()
+
         handle_user_events()
         game_field.mines_on_board(state)
+
+        if is_lose():
+            state["state"] = consts.LOSE_STATE
+
+        if is_win():
+            state["state"] = consts.WIN_STATE
+
         screen.print_green_screen(state)
 
 def handle_user_events():
@@ -62,7 +74,7 @@ def move_player_up():
                 i[0] = i[0] - 1
             state["soldier_pic_loc_y"] -= consts.SQUARE_SIZE
 
-    # return state["soldier_state"]
+
 
 def move_player_down():
     can_move = []
@@ -73,7 +85,6 @@ def move_player_down():
         for i in state["soldier_state"]:
             i[0] = i[0] + 1
         state["soldier_pic_loc_y"] += consts.SQUARE_SIZE
-    # return state["soldier_state"]
 
 
 
@@ -87,8 +98,6 @@ def move_player_left():
             i[1] = i[1] - 1
         state["soldier_pic_loc_x"] -= consts.SQUARE_SIZE
 
-    # return state["soldier_state"]
-
 
 
 def move_player_right():
@@ -101,20 +110,20 @@ def move_player_right():
             i[1] = i[1] + 1
         state["soldier_pic_loc_x"] += consts.SQUARE_SIZE
 
-    # return state["soldier_state"]
 
 def is_win():
-    if game_field.check_if_touching_flag(state):
+    if game_field.flag_on_board(state):
         return True
     else:
         return False
 
 def is_lose():
-    if game_field.check_if_touching_bomb(state):
+    if game_field.mines_on_board(state):
         return True
     else:
         return False
 
+game_field.mines_on_board(state)
 
 if __name__ == '__main__':
     main()
