@@ -1,10 +1,7 @@
 import pygame
 import consts
 import random
-import time
 
-
-mines_index_list = []
 
 pygame.init() #should be in main
 
@@ -78,5 +75,7 @@ draw_start_message()
 put_soldier_on_screen()
 random_bushes_place()
 put_flag_on_screen()
+
+
 pygame.display.flip()  # can put at the end of the main
 pygame.time.wait(10000)
