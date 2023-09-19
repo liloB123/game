@@ -16,7 +16,6 @@ def create_board():
 
 def mines_on_board(state):
     mines_list = black_screen.mines_places
-    x = state["soldier_state"]
     for index in mines_list:
         index_x_mine = math.ceil(index[0] / consts.SQUARE_SIZE)
         index_y_mine = math.ceil(index[1] / consts.SQUARE_SIZE)
@@ -27,11 +26,6 @@ def mines_on_board(state):
 
 
 def check_if_touching_flag(game_state):
-    for row in range(game_state["soldier_state"]):
-        if 21 <= row <= 22:
-            for col in range(game_state["soldier_state"][row]):
-                if 46 <= col <= 49:
-                    return True
 
 
 def check_if_touching_mine(game_state):
