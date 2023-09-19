@@ -1,86 +1,105 @@
 import pygame
+
+import black_screen
 import consts
 import game_field
+import screen
+import soldier
 
 state = {
     "is_window_open" : True,
     "is_player_moving" : False,
     "moving_direction" : None,
-    "soldier_state" : consts.START_LOC_SOLDIER,
+    "soldier_state" : soldier.soldier_start_loc(),
     "flag_state" : consts.START_LOC_FLAG,
     "soldier_pic_loc_x" : consts.SOLDIER_PIC_LOC_X,
     "soldier_pic_loc_y" : consts.SOLDIER_PIC_LOC_Y,
     "state" : consts.RUNNING_STATE
 }
 
+
+
+def main():
+    pygame.init()
+    black_screen.random_mines_place()
+
+    while state["is_window_open"]:
+        handle_user_events()
+        screen.print_green_screen(state)
+
 def handle_user_events():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             state["is_window_open"] = False
 
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                move_player_up()
 
-        elif event.type == pygame.K_UP:
-            move_player_up()
+            elif event.key == pygame.K_DOWN:
+                move_player_down()
 
-        elif event.type == pygame.K_DOWN:
-            move_player_down()
+            elif event.key == pygame.K_LEFT:
+                move_player_left()
 
-        elif event.type == pygame.K_LEFT:
-            move_player_left()
+            elif event.key == pygame.K_RIGHT:
+                move_player_right()
 
-        elif event.type == pygame.K_RIGHT:
-            move_player_right()
-
-        elif event.type == pygame.K_SPACE:
-            screen
+            elif event.key == pygame.K_SPACE:
+                if pygame.key.get_pressed():
+                    black_screen.print_black_screen()
 
 
 def move_player_up():
-    for row in range(state["soldier_state"]):
-        if row > 0:
-            for col in range(state["soldier_state"][row]):
-                state["soldier_state"][row][col] = state["soldier_state"][row - 1][col]
-    state["soldier_pic_loc_y"] -= consts.SQUARE_SIZE
+    can_move = []
+    for index in state["soldier_state"]:
+        if index[0] > 0:
+            can_move.append(1)
+        if len(can_move) == 8:
+            for i in state["soldier_state"]:
+                i[0] = i[0] - 1
+            state["soldier_pic_loc_y"] -= consts.SQUARE_SIZE
 
-    return state["soldier_state"]
+    # return state["soldier_state"]
 
 def move_player_down():
     can_move = []
-    for row in range(state["soldier_state"]):
-        if row > 24:
+    for index in state["soldier_state"]:
+        if index[0] < 24:
             can_move.append(1)
-    if can_move == []:
-        for row in range(len(state["soldier_state"])):
-            for col in range(len(state["soldier_state"][row])):
-                state["soldier_state"][row][col] = state["soldier_state"][row + 1][col]
-    state["soldier_pic_loc_y"] += consts.SQUARE_SIZE
+    if len(can_move) == 8:
+        for i in state["soldier_state"]:
+            i[0] = i[0] + 1
+        state["soldier_pic_loc_y"] += consts.SQUARE_SIZE
+    # return state["soldier_state"]
 
-    return state["soldier_state"]
+
 
 def move_player_left():
-    for row in range(state["soldier_state"]):
-        for col in range(len(state["soldier_state"][row])):
-            if col > 0:
-                state["soldier_state"][row][col] = state["soldier_state"][row + 1][col]
-    state["soldier_pic_loc_x"] -= consts.SQUARE_SIZE
+    can_move = []
+    for index in state["soldier_state"]:
+        if index[1] > 0:
+            can_move.append(1)
+    if len(can_move) == 8:
+        for i in state["soldier_state"]:
+            i[1] = i[1] - 1
+        state["soldier_pic_loc_x"] -= consts.SQUARE_SIZE
 
-    return state["soldier_state"]
+    # return state["soldier_state"]
+
 
 
 def move_player_right():
     can_move = []
-    for row in range(state["soldier_state"]):
-        for col in range(len(state["soldier_state"][row])):
-            if col > 49:
-                can_move.append(1)
-    if can_move == []:
-        for row in range(state["soldier_state"]):
-            for col in range(len(state["soldier_state"][row])):
-                state["soldier_state"][row][col] = state["soldier_state"][row + 1][col]
-    state["soldier_pic_loc_x"] -= consts.SQUARE_SIZE
+    for index in state["soldier_state"]:
+        if index[1] < 49:
+            can_move.append(1)
+    if len(can_move) == 8:
+        for i in state["soldier_state"]:
+            i[1] = i[1] + 1
+        state["soldier_pic_loc_x"] += consts.SQUARE_SIZE
 
-    return state["soldier_state"]
-
+    # return state["soldier_state"]
 
 def is_win():
     if game_field.check_if_touching_flag(state):
@@ -96,4 +115,5 @@ def is_lose():
 
 
 
-
+if __name__ == '__main__':
+    main()

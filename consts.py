@@ -1,7 +1,7 @@
 import pygame
 
-START_LOC_SOLDIER = 1 #temp
-START_LOC_FLAG = 2 #temp
+START_LOC_SOLDIER = 1
+START_LOC_FLAG = 2
 SOLDIER_PIC_LOC_X = 0
 SOLDIER_PIC_LOC_Y = 0
 
@@ -22,9 +22,10 @@ mine_ing = pygame.image.load("mine.png")
 DEFAULT_MINE_SIZE = (SQUARE_SIZE * 3, SQUARE_SIZE)
 MINE_IMG = pygame.transform.scale(mine_ing, DEFAULT_MINE_SIZE)
 
-LOSE_STATE = 1
+LOSE_STATE = 2
 WIN_STATE = 3
-RUNNING_STATE = 2
+RUNNING_STATE = 1
+
 
 soldier_image = pygame.image.load("soldier.png")
 DEFAULT_SOLDIER_SIZE = (SQUARE_SIZE * 2, SQUARE_SIZE * 4)
