@@ -1,10 +1,10 @@
 import pygame
 import consts
 import random
-
 import game_field
 
-bushes_index = []
+
+mines_index_list = []
 
 pygame.init() #should be in main
 
@@ -40,17 +40,27 @@ def draw_text(message, font_size, color, location):
     text_img = font.render(message, True, color)
     green_board.blit(text_img, location)
 
-random_bushes_place()
+def black_board():
+    black_board = pygame.display.set_mode((consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
+    black_board.fill(consts.BLACK_COLOR)
+    for x in range(0, consts.WINDOW_WIDTH, consts.SQUARE_SIZE):
+        for y in range(0, consts.WINDOW_HEIGHT, consts.SQUARE_SIZE):
+            rect = pygame.Rect(x, y, consts.SQUARE_SIZE, consts.SQUARE_SIZE)
+            pygame.draw.rect(black_board, consts.GRID_GREEN_COLOR, rect, 1)
 
-def draw_start_message():
-    draw_text(consts.START_MESSAGE_1, consts.START_FONT_SIZE,
-                 consts.START_COLOR, consts.START_MESSAGE_1_LOCATION)
-    draw_text(consts.START_MESSAGE_2, consts.START_FONT_SIZE,
-              consts.START_COLOR, consts.START_MESSAGE_2_LOCATION)
+    random_mines_place(mines_index_list, black_board)
 
-draw_start_message()
-put_soldier_on_screen()
-random_bushes_place()
-put_flag_on_screen()
+def random_mines_place(mines_index_list, black_board):
+    count = 0
+    while count < 20:
+        mine_x = random.randint(0, (consts.BOARD_COLUMNS * consts.SQUARE_SIZE - consts.SQUARE_SIZE * 3))
+        mine_y = random.randint(0, (consts.BOARD_ROWS * consts.SQUARE_SIZE - consts.SQUARE_SIZE))
+        mine_index = [mine_x, mine_y]
+        mines_index_list.append(mine_index)
+        black_board.blit(consts.MINE_IMG, (mine_x, mine_y))
+        count += 1
+
+
+
 pygame.display.flip()  # can put at the end of the main
 pygame.time.wait(10000)
