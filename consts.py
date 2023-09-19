@@ -28,7 +28,7 @@ RUNNING_STATE = 1
 
 
 soldier_image = pygame.image.load("soldier.png")
-DEFAULT_SOLDIER_SIZE = (SQUARE_SIZE * 2, SQUARE_SIZE * 4)
+DEFAULT_SOLDIER_SIZE = (50, 60)
 SOLDIER_IMG = pygame.transform.scale(soldier_image, DEFAULT_SOLDIER_SIZE)
 
 flag_image = pygame.image.load("flag.png")
@@ -36,7 +36,7 @@ DEFAULT_FLAG_SIZE = (SQUARE_SIZE * 4, SQUARE_SIZE * 3)
 FLAG_IMG = pygame.transform.scale(flag_image, DEFAULT_FLAG_SIZE)
 
 soldier_night_image = pygame.image.load("soldier_night.png")
-DEFAULT_SOLDIER_NIGHT_SIZE = (SQUARE_SIZE * 2, SQUARE_SIZE * 4)
+DEFAULT_SOLDIER_NIGHT_SIZE = (50, 60)
 SOLDIER_NIGHT_IMG = pygame.transform.scale(soldier_night_image, DEFAULT_SOLDIER_NIGHT_SIZE)
 
 FONT_NAME = "Calibri"
