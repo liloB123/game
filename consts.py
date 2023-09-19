@@ -1,3 +1,5 @@
+import pygame
+
 START_LOC_SOLDIER = 1 #temp
 START_LOC_FLAG = 2 #temp
 SOLDIER_PIC_LOC_X = 0
@@ -10,11 +12,11 @@ WINDOW_WIDTH = BOARD_COLUMNS * SQUARE_SIZE
 WINDOW_LENGTH = BOARD_ROWS * SQUARE_SIZE
 GREEN_COLOR = (6, 140, 48)
 
-GRASS_IMG = "grass.png"
-
+grass_image = pygame.image.load("grass.png")
+DEFAULT_GRASS_SIZE = (30,30)
+GRASS_IMG = pygame.transform.scale(grass_image, DEFAULT_GRASS_SIZE)
 
 LOSE_STATE = 1
 WIN_STATE = 3
 RUNNING_STATE = 2
 MINE_IMG = "mine.png"
-GRASS_IMG = "grass.png"
