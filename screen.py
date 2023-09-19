@@ -1,7 +1,7 @@
 import pygame
 import consts
 import random
-import game_field
+import time
 
 
 mines_index_list = []
@@ -43,6 +43,14 @@ def draw_start_message():
     draw_text(consts.START_MESSAGE_2, consts.START_FONT_SIZE,
               consts.START_COLOR, consts.START_MESSAGE_2_LOCATION)
 
+def draw_lose():
+    draw_text(consts.LOSE_MESSAGE, consts.END_FONT_SIZE,
+              consts.END_COLOR, consts.END_MESSAGE_LOCATION)
+
+def draw_win():
+    draw_text(consts.WIN_MESSAGE, consts.END_FONT_SIZE,
+              consts.END_COLOR, consts.END_MESSAGE_LOCATION)
+
 def black_board():
     black_board = pygame.display.set_mode((consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
     black_board.fill(consts.BLACK_COLOR)
@@ -64,7 +72,8 @@ def random_mines_place(mines_index_list, black_board):
         count += 1
 
 
-
+draw_lose()
+draw_win()
 draw_start_message()
 put_soldier_on_screen()
 random_bushes_place()
