@@ -116,7 +116,5 @@ def is_lose():
         return False
 
 
-game_field.mines_on_board(state)
-
-# if __name__ == '__main__':
-#     main()
+if __name__ == '__main__':
+    main()

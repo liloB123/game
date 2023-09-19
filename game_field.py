@@ -22,22 +22,9 @@ def mines_on_board(state):
         index_y_mine = math.ceil(index[1] / consts.SQUARE_SIZE)
         for i in range(len(state["soldier_state"])):
             if i > 5:
-                for j in state["soldier_state"][state]:
-                    if state["soldier_state"][i][j][0] == index_x_mine and state["soldier_state"][i][j][0] == index_y_mine:
-                        state["state"] = consts.LOSE_STATE
+                if state["soldier_state"][i][0] == index_y_mine and state["soldier_state"][i][1] == index_x_mine:
+                    state["state"] = consts.LOSE_STATE
 
-
-
-
-    while count < 20:
-        bush_row_index = random.randint(0, 24)
-        bush_column_index = random.randint(0, 49)
-        bush = [bush_row_index, bush_column_index]
-        if bush not in mines_index:
-            mines_index.append(bush)
-            count += 1
-
-    return mines_index
 
 def check_if_touching_flag(game_state):
     for row in range(game_state["soldier_state"]):
