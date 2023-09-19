@@ -46,8 +46,8 @@ def handle_user_events():
                 move_player_right()
 
             elif event.key == pygame.K_SPACE:
-                if pygame.key.get_pressed():
-                    black_screen.print_black_screen()
+                black_screen.print_black_screen(state)
+                pygame.time.delay(1000)
 
 
 def move_player_up():
